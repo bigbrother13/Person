@@ -5,8 +5,9 @@ class SolversController < ApplicationController
   end
 
   def create
-    @kill = Kill.new(:quantity, :elimination)
-    result = kill.number_last(number_last_params(b))
+    binding.pry
+    @kill = Kill.new(params[:count], params[:every])
+    result = @kill.number
     if result.any?
       flash[:success] = 'The operation was successful'
     else
