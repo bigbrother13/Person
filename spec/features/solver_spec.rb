@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Solver' do
-  let!(s) { create :solver, count: 7, every: 10 }
+  let!(solver) { create :solver, quantity: 10, elimination: 7 }
   
   it 'I can find out who was the last' do
     arr = Solver.new(count: 7)

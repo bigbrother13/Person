@@ -5,15 +5,13 @@ class SolversController < ApplicationController
   end
 
   def create
-    binding.pry
-    @kill = Kill.new(params[:count], params[:every])
-    result = @kill.number
-    if result.any?
+    @kill = Kill.new(params["solver"]["quantity"].to_i, params["solver"]["elimination"].to_i)
+    @result = @kill.number
+    if @result
       flash[:success] = 'The operation was successful'
     else
-      flash[:danger]  = 'Not enough money in the account'
+      flash[:danger]  = 'Error'
     end
-    redirect_to root_path
   end
 
   private
