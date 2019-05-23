@@ -1,22 +1,23 @@
 class SolversController < ApplicationController
-
-  def index
-    @solvers = Solver.first
+  def new
+    @solver = Solver.new
+    @result = params[:answer]
   end
 
   def create
-    @kill = Kill.new(params["solver"]["quantity"].to_i, params["solver"]["elimination"].to_i)
-    @result = @kill.number
+    @solver = Solver.new(count: solver_params[:count].to_i, every: solver_params[:every].to_i)
+    @result = @solver.number
     if @result
       flash[:success] = 'The operation was successful'
     else
       flash[:danger]  = 'Error'
     end
+    redirect_to new_solver_path(answer: @result)
   end
 
   private
 
   def solver_params
-    params.require(:solver).permit(:quantity, :elimination)
+    params.require(:solver).permit(:count, :every)
   end
 end

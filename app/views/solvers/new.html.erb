@@ -1,0 +1,9 @@
+<h1>Which soldier must die</h1>
+
+<%= simple_form_for :solver, url: solver_path do |f| %>
+  <%= f.input :count %>
+  <%= f.input :every %>
+  <%= f.submit 'Submit' %>
+<% end %>
+
+<h1>Answer <%= @result %></h1>
