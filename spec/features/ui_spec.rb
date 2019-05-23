@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'IU', type: :feature do
-  let!(:solver) { create :solver, count: 10, every: 7 }
+  let!(:solver) { Solver.new(count: 10, every: 5) }
 
 
   before do
@@ -14,9 +14,9 @@ RSpec.describe 'IU', type: :feature do
 
   it 'the number of the embroidered soldier' do
     fill_in 'Count', with: '10'
-    fill_in 'Every', with: '7'
+    fill_in 'Every', with: '5'
     click_button 'Submit'
-    # expect(page).to have_content('The operation was successful')
-    expect(page).to have_content('Answer: 4')
+    expect(page).to have_content('The operation was successful')
+    expect(page).to have_content('Answer: 2')
   end 
 end

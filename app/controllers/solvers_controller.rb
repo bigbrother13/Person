@@ -5,7 +5,7 @@ class SolversController < ApplicationController
   end
 
   def create
-    @solver = Solver.new(count: solver_params[:count].to_i, every: solver_params[:every].to_i)
+    @solver = Solver.new(solver_params)
     @result = @solver.number
     if @result
       flash[:success] = 'The operation was successful'
@@ -18,6 +18,9 @@ class SolversController < ApplicationController
   private
 
   def solver_params
-    params.require(:solver).permit(:count, :every)
+    { 
+      count: params[:solver][:count].to_i,
+      every: params[:solver][:every].to_i
+    }
   end
 end
